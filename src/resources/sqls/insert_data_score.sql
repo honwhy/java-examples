@@ -1,0 +1,1 @@
+insert into score(student_id, course_name, score) values (1, '语文', 80)

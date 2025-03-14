@@ -1,0 +1,50 @@
+# Maven
+target/
+pom.xml.tag
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.classpath
+.project
+.settings/
+.factorypath
+.springBeans
+
+# Eclipse
+.sts4-cache/
+
+# Log files
+*.log
+logs/
+
+# Temp files
+*.tmp
+*.bak
+*.swp
+*~.nib
+
+# OS metadata
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+
+# Spring Boot
+application.properties~
+!src/main/resources/application.properties
+
+# Derby database files
+derby.log
+*.dat
+*.script
