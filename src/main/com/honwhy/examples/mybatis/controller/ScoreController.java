@@ -1,7 +1,7 @@
-package com.honwhy.examples.controller;
+package com.honwhy.examples.mybatis.controller;
 
-import com.honwhy.examples.entity.Score;
-import com.honwhy.examples.service.ScoreService;
+import com.honwhy.examples.mybatis.entity.Score;
+import com.honwhy.examples.mybatis.service.ScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

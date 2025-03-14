@@ -1,7 +1,7 @@
-package com.honwhy.examples.service;
+package com.honwhy.examples.mybatis.service;
 
 
-import com.honwhy.examples.entity.Score;
+import com.honwhy.examples.mybatis.entity.Score;
 
 import java.util.List;
 

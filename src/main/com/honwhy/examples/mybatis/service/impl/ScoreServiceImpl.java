@@ -1,8 +1,8 @@
-package com.honwhy.examples.service.impl;
+package com.honwhy.examples.mybatis.service.impl;
 
-import com.honwhy.examples.entity.Score;
-import com.honwhy.examples.mapper.ScoreMapper;
-import com.honwhy.examples.service.ScoreService;
+import com.honwhy.examples.mybatis.entity.Score;
+import com.honwhy.examples.mybatis.mapper.ScoreMapper;
+import com.honwhy.examples.mybatis.service.ScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

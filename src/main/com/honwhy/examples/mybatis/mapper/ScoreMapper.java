@@ -1,7 +1,7 @@
-package com.honwhy.examples.mapper;
+package com.honwhy.examples.mybatis.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.honwhy.examples.entity.Score;
+import com.honwhy.examples.mybatis.entity.Score;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

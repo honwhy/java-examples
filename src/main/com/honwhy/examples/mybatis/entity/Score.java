@@ -1,4 +1,4 @@
-package com.honwhy.examples.entity;
+package com.honwhy.examples.mybatis.entity;
 
 import lombok.Data;
 

@@ -1,4 +1,4 @@
-package com.honwhy.examples.config;
+package com.honwhy.examples.mybatis.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
