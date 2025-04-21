@@ -42,7 +42,7 @@ Thumbs.db
 
 # Spring Boot
 application.properties~
-!src/main/resources/application.properties
+
 
 # Derby database files
 derby.log
