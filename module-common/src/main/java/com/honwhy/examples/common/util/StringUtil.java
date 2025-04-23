@@ -1,4 +1,4 @@
-package com.example.common.util;
+package com.honwhy.examples.common.util;
 
 public class StringUtil {
     public static boolean isEmpty(String str) {
