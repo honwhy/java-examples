@@ -10,11 +10,12 @@ import javax.lang.model.element.Element;
 import javax.lang.model.element.PackageElement;
 import javax.lang.model.element.TypeElement;
 import javax.tools.JavaFileObject;
+import java.io.OutputStream;
 import java.io.Writer;
 import java.util.Arrays;
 import java.util.Set;
 
-@SupportedAnnotationTypes({"com.honwhy.examples.common.annotation.AtVersion", "com.honwhy.examples.common.annotation.AtVersions"})
+@SupportedAnnotationTypes({"com.honwhy.examples.common.annotation.AtVersions"})
 public class AtVersionProcessor extends AbstractProcessor {
     @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
@@ -51,8 +52,9 @@ public class AtVersionProcessor extends AbstractProcessor {
             try {
                 JavaFileObject classFile = processingEnv.getFiler().createClassFile(fullClassName);
 //                FileObject fileObject = processingEnv.getFiler().createResource(StandardLocation.CLASS_OUTPUT, packageName, path);
-                try (Writer writer = classFile.openWriter()) {
-                    writer.write(Arrays.toString(cw.toByteArray()));
+                try (OutputStream outputStream = classFile.openOutputStream()) {
+                    outputStream.write(cw.toByteArray());
+                    outputStream.flush();
                     System.out.println("Generated interface: " + fullClassName);
                 }
             } catch (Exception e) {
