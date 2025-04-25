@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240" fill="none">
+    <style>
+        /* Style the text */
+        text {
+        /* Specify the system or custom font to use */
+        font-family: "FiraSans", sans-serif;
+
+        /* Add other styling */
+        font-size: 40px;
+        font-weight: bold;
+        }
+    </style>
+    <circle cx="120" cy="120" r="120" fill="#07c060"/>
+
+    <rect x="30" y="60" width="180" height="120" rx="8"  fill="#fcfcfc"/>
+    <circle cx="48" cy="72" r="6" fill="#07c060"/>
+    <circle cx="66" cy="72" r="6" fill="#07c060"/>
+    <g transform="translate(0,-20)" opacity="0">
+        <path d="M100 110 L60 140 L100 170" stroke="#07c060" fill="none" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M140 110 L180 140 L140 170" stroke="#07c060" fill="none" stroke-width="8" stroke-linejoin="round" stroke-linecap="round" />
+        <path d="M130 100 L110 180" stroke="#07c060" fill="none" stroke-width="8" stroke-linecap="round" />
+    </g>
+    <text x="90" y="135" fill="#07c060">##</text>
+</svg>
