@@ -9,10 +9,12 @@ import javax.annotation.processing.SupportedAnnotationTypes;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.PackageElement;
 import javax.lang.model.element.TypeElement;
+import javax.tools.FileObject;
 import javax.tools.JavaFileObject;
+import javax.tools.StandardLocation;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Writer;
-import java.util.Arrays;
 import java.util.Set;
 
 @SupportedAnnotationTypes({"com.honwhy.examples.common.annotation.AtVersions"})
@@ -25,8 +27,8 @@ public class AtVersionProcessor extends AbstractProcessor {
         Set<? extends Element> elements = roundEnv.getElementsAnnotatedWith(AtVersions.class);
         System.out.println("elements: " + elements);
 
-        elements.forEach(this::generateCode);
-
+//        elements.forEach(this::generateCode);
+        elements.forEach(this::generateSourceCode);
         return false;
     }
 
@@ -62,7 +64,29 @@ public class AtVersionProcessor extends AbstractProcessor {
             }
         }
     }
+    
+    private void generateSourceCode(Element element) {
+        AtVersion[] annotation = element.getAnnotationsByType(AtVersion.class);
+        for (AtVersion atVersion : annotation) {
+            String className = "AtVersion" + atVersion.value();
+            String packageName = getPackageName(element);
+            String fullClassName = packageName + ".AtVersion" + className + ".java";
+            StringBuffer sb = new StringBuffer()
+                    .append("package " + packageName + ";\n")
+                            .append("public interface " + className + " {}\n");
 
+            try {
+                FileObject sourceFile = processingEnv.getFiler().createResource(StandardLocation.SOURCE_OUTPUT, packageName, className + ".java");
+                try(Writer writer = sourceFile.openWriter()) {
+                    writer.write(sb.toString());
+                    writer.flush();
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
     /**
      * 获取元素所属的包名，兼容低版本 JDK。
      *
