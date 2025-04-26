@@ -1,5 +1,7 @@
 package com.honwhy.examples.common.annotation;
 
+import com.squareup.javapoet.JavaFile;
+import com.squareup.javapoet.TypeSpec;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Opcodes;
 
@@ -7,6 +9,7 @@ import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.RoundEnvironment;
 import javax.annotation.processing.SupportedAnnotationTypes;
 import javax.lang.model.element.Element;
+import javax.lang.model.element.Modifier;
 import javax.lang.model.element.PackageElement;
 import javax.lang.model.element.TypeElement;
 import javax.tools.FileObject;
@@ -70,15 +73,22 @@ public class AtVersionProcessor extends AbstractProcessor {
         for (AtVersion atVersion : annotation) {
             String className = "AtVersion" + atVersion.value();
             String packageName = getPackageName(element);
-            String fullClassName = packageName + ".AtVersion" + className + ".java";
-            StringBuffer sb = new StringBuffer()
-                    .append("package " + packageName + ";\n")
-                            .append("public interface " + className + " {}\n");
+//            String fullClassName = packageName + ".AtVersion" + className + ".java";
+//            StringBuffer sb = new StringBuffer()
+//                    .append("package " + packageName + ";\n")
+//                            .append("public interface " + className + " {}\n");
 
+            TypeSpec atInterface = TypeSpec.interfaceBuilder(className)
+                    .addModifiers(Modifier.PUBLIC)
+                    .build();
+            JavaFile javaFile = JavaFile
+                    .builder(packageName, atInterface)
+                    .indent("    ")
+                    .build();
             try {
                 FileObject sourceFile = processingEnv.getFiler().createResource(StandardLocation.SOURCE_OUTPUT, packageName, className + ".java");
                 try(Writer writer = sourceFile.openWriter()) {
-                    writer.write(sb.toString());
+                    writer.write(javaFile.toString());
                     writer.flush();
                 }
 

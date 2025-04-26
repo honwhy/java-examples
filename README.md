@@ -13,3 +13,20 @@ use `@Category(IncludeTest.class)` to specify test cases
 ## AbstractProcessor
 
 `AtVersionProcessor`
+```xml
+<dependency>
+    <groupId>org.ow2.asm</groupId>
+    <artifactId>asm</artifactId>
+    <version>9.7.1</version>
+</dependency>
+<dependency>
+    <groupId>com.squareup</groupId>
+    <artifactId>javapoet</artifactId>
+    <version>1.10.0</version>
+</dependency>
+```
+
+## inspired by
+
+- [Tagging and Filtering JUnit Tests](https://www.baeldung.com/junit-filtering-tests)
+- [java-poet](https://www.baeldung.com/java-poet)
