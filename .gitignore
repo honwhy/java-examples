@@ -48,3 +48,4 @@ application.properties~
 derby.log
 *.dat
 *.script
+.debug.md
