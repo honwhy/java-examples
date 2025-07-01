@@ -1,6 +1,8 @@
 
 package com.honwhy.examples.common.util
-
+/**
+ * 运算符重载，https://blog.csdn.net/a568478312/article/details/79910691
+ */
 class NaNBigDecimal extends BigDecimal {
 
     private static final NaNBigDecimal NaN = new NaNBigDecimal()
@@ -36,7 +38,6 @@ class NaNBigDecimal extends BigDecimal {
         if (this.is(NaN) || other.is(NaN)) return NaN
         return new NaNBigDecimal(super.add(other as BigDecimal))
     }
-
     // 运算符重载：减法
     def minus(NaNBigDecimal other) {
         if (this.is(NaN) || other.is(NaN)) return NaN
