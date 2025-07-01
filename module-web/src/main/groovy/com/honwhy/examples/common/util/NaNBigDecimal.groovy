@@ -1,8 +1,6 @@
 
 package com.honwhy.examples.common.util
 
-import java.math.BigDecimal
-
 class NaNBigDecimal extends BigDecimal {
 
     private static final NaNBigDecimal NaN = new NaNBigDecimal()
@@ -54,7 +52,7 @@ class NaNBigDecimal extends BigDecimal {
     // 运算符重载：除法
     def div(NaNBigDecimal other) {
         if (this.is(NaN) || other.is(NaN)) return NaN
-        return new NaNBigDecimal(super.divide(other as BigDecimal, BigDecimal.ROUND_HALF_UP))
+        return new NaNBigDecimal(super.divide(other as BigDecimal, ROUND_HALF_UP))
     }
 
     // 运算符重载：等于
