@@ -1,74 +1,51 @@
-
 package com.honwhy.examples.common.util
+
 /**
  * 运算符重载，https://blog.csdn.net/a568478312/article/details/79910691
+ * 元编程：https://www.jianshu.com/p/2c17a50ff7f1
  */
-class NaNBigDecimal extends BigDecimal {
+class NaNBigDecimal extends NaNNumber implements GroovyInterceptable {
 
-    private static final NaNBigDecimal NaN = new NaNBigDecimal()
-
-    // 私有默认构造函数，用于创建 NaN 实例
-    private NaNBigDecimal() {
-        super("0")
+    NaNBigDecimal(def val) {
+        super(val)
     }
 
-    // 新增：支持 new NaNBigDecimal(BigDecimal val)
-    NaNBigDecimal(BigDecimal val) {
-        super(val != null ? val.unscaledValue() : ZERO.unscaledValue(), val != null ? val.scale() : 0)
-    }
-
-    static NaNBigDecimal valueOf(String val) {
-        if (val == null || val.trim().isEmpty()) {
-            return NaN
+    @Override
+    Object invokeMethod(String name, Object args) {
+        if (!(args instanceof Object[])) {
+            throw new IllegalArgumentException("Invalid arguments")
         }
-        try {
-            return new NaNBigDecimal(new BigDecimal(val))
-        } catch (NumberFormatException ignored) {
-            return NaN
+
+        switch(name) {
+            case 'equals':
+                return super.handleEquals(args[0])
+            case 'compareTo':
+                return super.handleComparison({ BigDecimal other -> value > other }, args[0])
+            case 'isGreaterThan':
+                return super.handleComparison({ BigDecimal other -> value > other }, args[0])
+            case 'isGreaterThanOrEqual':
+                return super.handleComparison({ BigDecimal other -> value >= other }, args[0])
+            case 'isLessThan':
+                return super.handleComparison({ BigDecimal other -> value < other }, args[0])
+            case 'isLessThanOrEqual':
+                return super.handleComparison({ BigDecimal other -> value <= other }, args[0])
+            default:
+                throw new MissingMethodException(name, this.class, args)
         }
     }
 
-    // 支持 new BigDecimal("") -> NaNBigDecimal.NaN
-    static NaNBigDecimal fromString(String val) {
-        return valueOf(val)
-    }
+    static void main(String[] args) {
+        def a = new NaNBigDecimal("")
+        def b = new NaNBigDecimal(10)
 
-    // 运算符重载：加法
-    def plus(NaNBigDecimal other) {
-        if (this.is(NaN) || other.is(NaN)) return NaN
-        return new NaNBigDecimal(super.add(other as BigDecimal))
-    }
-    // 运算符重载：减法
-    def minus(NaNBigDecimal other) {
-        if (this.is(NaN) || other.is(NaN)) return NaN
-        return new NaNBigDecimal(super.subtract(other as BigDecimal))
-    }
+        assert !(a == 10)
+        assert a != 10
+        assert !a.compareTo(10, '>')
+        assert !a.compareTo(10, '>=')
+        assert !a.compareTo(10, '<')
+        assert !a.compareTo(10, '<=')
 
-    // 运算符重载：乘法
-    def multiply(NaNBigDecimal other) {
-        if (this.is(NaN) || other.is(NaN)) return NaN
-        return new NaNBigDecimal(super.multiply(other as BigDecimal))
-    }
-
-    // 运算符重载：除法
-    def div(NaNBigDecimal other) {
-        if (this.is(NaN) || other.is(NaN)) return NaN
-        return new NaNBigDecimal(super.divide(other as BigDecimal, ROUND_HALF_UP))
-    }
-
-    // 运算符重载：等于
-    boolean equals(Object obj) {
-        if (obj == null) return false
-        if (!(obj instanceof NaNBigDecimal)) return false
-        return this.is(NaN) && obj.is(NaN) || super.equals(obj)
-    }
-
-    // 覆盖 hashCode
-    int hashCode() {
-        return this.is(NaN) ? Double.NaN.hashCode() : super.hashCode()
-    }
-
-    String toString() {
-        return this.is(NaN) ? "NaN" : super.toString()
+        assert a != b
+        assert b == 10
     }
 }
