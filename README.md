@@ -40,6 +40,20 @@ define annotations to help output csv file
 ## qrcode
 only support java 9+ version
 
+use [qrgen](https://github.com/honwhy/qrgen) to generate different qrcode
+
+```xml
+<dependency>
+    <groupId>com.google.zxing</groupId>
+    <artifactId>core</artifactId>
+    <version>3.5.2</version>
+</dependency>
+<dependency>
+    <groupId>com.github.aytchell</groupId>
+    <artifactId>qrgen</artifactId>
+    <version>3.0.0</version>
+</dependency>
+```
 ## inspired by
 
 - [Tagging and Filtering JUnit Tests](https://www.baeldung.com/junit-filtering-tests)
