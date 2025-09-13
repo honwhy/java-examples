@@ -1,4 +1,4 @@
-package com.honwhy.examples.copy.config;
+package com.honwhy.examples.qrcode.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

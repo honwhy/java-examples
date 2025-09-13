@@ -1,4 +1,4 @@
-package com.honwhy.examples.copy.config;
+package com.honwhy.examples.qrcode.config;
 
 import javax.servlet.ReadListener;
 import javax.servlet.ServletInputStream;

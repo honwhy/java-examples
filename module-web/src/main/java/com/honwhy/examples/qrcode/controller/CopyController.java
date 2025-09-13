@@ -1,4 +1,4 @@
-package com.honwhy.examples.copy.controller;
+package com.honwhy.examples.qrcode.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.web.bind.annotation.PostMapping;
