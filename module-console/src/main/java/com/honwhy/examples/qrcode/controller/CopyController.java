@@ -40,6 +40,12 @@ public class CopyController {
                 300, 300,
                 map);
 
+        // Print QR code to console
+        printQRCodeToConsole(
+                qrCodeWriter.encode(url, BarcodeFormat.QR_CODE,1, 1,map),
+                url
+        );
+
         // Convert to image
         BufferedImage bufferedImage = MatrixToImageWriter.toBufferedImage(bitMatrix);
 
@@ -51,7 +57,25 @@ public class CopyController {
         ImageIO.write(bufferedImage, "PNG", response.getOutputStream());
         response.flushBuffer();
     }
+    private void printQRCodeToConsole(BitMatrix bitMatrix, String url)  throws Exception {
+        System.out.println("\n=== QR Code for: " + url + " ===");
+        int width = bitMatrix.getWidth();
+        int height = bitMatrix.getHeight();
 
+        // Simple ASCII representation
+        for (int y = 0; y < height; y++) { // Skip every other row for better aspect ratio
+            StringBuilder row = new StringBuilder();
+            for (int x = 0; x < width; x++) {
+                if (bitMatrix.get(x, y)) {
+                    row.append("██"); // Two characters for better square appearance
+                } else {
+                    row.append("  "); // Two spaces
+                }
+            }
+            System.out.println(row);
+        }
+        System.out.println("=== End QR Code ===\n");
+    }
     private com.google.zxing.qrcode.decoder.ErrorCorrectionLevel getErrorCorrectionLevel(int level) {
         switch (level) {
             case 0: return com.google.zxing.qrcode.decoder.ErrorCorrectionLevel.L;
