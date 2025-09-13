@@ -36,6 +36,10 @@ define annotations to help output csv file
     <version>1.10.0</version>
 </dependency>
 ```
+
+## qrcode
+only support java 9+ version
+
 ## inspired by
 
 - [Tagging and Filtering JUnit Tests](https://www.baeldung.com/junit-filtering-tests)
