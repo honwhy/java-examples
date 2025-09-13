@@ -6,7 +6,7 @@
     <!-- 子模块信息 -->
     <parent>
         <groupId>com.honwhy.examples</groupId>
-        <artifactId>parent-module</artifactId>
+        <artifactId>java-examples</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <artifactId>module-common</artifactId>
