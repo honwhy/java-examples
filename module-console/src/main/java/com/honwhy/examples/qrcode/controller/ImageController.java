@@ -1,8 +1,6 @@
 package com.honwhy.examples.qrcode.controller;
 
-import com.github.aytchell.qrgen.QrGenerator;
 import com.github.aytchell.qrgen.colors.RgbValue;
-import com.github.aytchell.qrgen.config.ImageFileType;
 import com.github.aytchell.qrgen.config.MarkerStyle;
 import com.github.aytchell.qrgen.config.PixelStyle;
 import com.github.aytchell.qrgen.exceptions.QrConfigurationException;
@@ -11,30 +9,23 @@ import com.github.aytchell.qrgen.utils.ColorConfig;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.WriterException;
-import com.google.zxing.aztec.encoder.Encoder;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
-import com.google.zxing.qrcode.encoder.ByteMatrix;
-import com.google.zxing.qrcode.encoder.QRCode;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletResponse;
-import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
 @RestController
 @RequestMapping("/qrcode")
-public class CopyController {
+public class ImageController {
 
     @GetMapping("/image")
     public void image(@RequestParam(required = false) String url,
