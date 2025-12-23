@@ -39,6 +39,7 @@
         <module>module-common</module>
         <module>module-web</module>
         <module>module-console</module>
+        <module>module-asm</module>
     </modules>
     <properties>
         <java.version>1.8</java.version> <!-- 根据实际情况调整 Java 版本 -->

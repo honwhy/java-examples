@@ -1,4 +1,4 @@
-# examples
+# java-examples
 example project for exploring programming gimmicks
 
 ## mybatis
@@ -54,6 +54,15 @@ use [qrgen](https://github.com/honwhy/qrgen) to generate different qrcode
     <version>3.0.0</version>
 </dependency>
 ```
+
+## java lambda
+```java
+Map<String, List<Person>> map2 = persons.stream()
+        .collect(Collectors.groupingBy(Person::getName,
+        () -> new HashMap<>(256),
+        Collectors.toList()));
+```
+
 ## inspired by
 
 - [Tagging and Filtering JUnit Tests](https://www.baeldung.com/junit-filtering-tests)
